@@ -1,10 +1,13 @@
 import type { Metadata, Viewport } from "next";
-import { Caveat, Fraunces, Nunito } from "next/font/google";
+// Fonts are bundled with the app (no download from Google at build time).
+import "@fontsource/fraunces/600.css";
+import "@fontsource/fraunces/700.css";
+import "@fontsource/nunito/400.css";
+import "@fontsource/nunito/600.css";
+import "@fontsource/nunito/800.css";
+import "@fontsource/caveat/600.css";
+import "@fontsource/caveat/700.css";
 import "./globals.css";
-
-const fraunces = Fraunces({ variable: "--font-fraunces", subsets: ["latin"], weight: ["600", "700"] });
-const nunito = Nunito({ variable: "--font-nunito", subsets: ["latin"], weight: ["400", "600", "800"] });
-const caveat = Caveat({ variable: "--font-caveat", subsets: ["latin"], weight: ["600", "700"] });
 
 // Deliberately generic: link previews in Messages show only this.
 export const metadata: Metadata = {
@@ -24,7 +27,7 @@ export const viewport: Viewport = {
 export default function RootLayout({ children }: Readonly<{ children: React.ReactNode }>) {
   return (
     <html lang="en">
-      <body className={`${fraunces.variable} ${nunito.variable} ${caveat.variable} antialiased`}>
+      <body className="antialiased">
         <div className="lights" aria-hidden="true">
           {Array.from({ length: 14 }, (_, i) => (
             <span key={i} />

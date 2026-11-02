@@ -11,9 +11,9 @@
   --color-pine-dark: #163628;
   --color-gold: #c9a24a;
   --color-slip: #fffdf6;
-  --font-display: var(--font-fraunces), Georgia, serif;
-  --font-body: var(--font-nunito), system-ui, sans-serif;
-  --font-hand: var(--font-caveat), "Comic Sans MS", cursive;
+  --font-display: "Fraunces", Georgia, serif;
+  --font-body: "Nunito", system-ui, sans-serif;
+  --font-hand: "Caveat", "Comic Sans MS", cursive;
 }
 
 html {
