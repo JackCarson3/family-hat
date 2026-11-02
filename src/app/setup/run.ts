@@ -1,10 +1,10 @@
 import { headers } from "next/headers";
 import { demoHats, FAMILY_NAME, hats } from "@/config/family";
-import { getDb } from "@/db";
+import { databaseUrl, getDb } from "@/db";
 import { createHat, type CreatedHat } from "@/lib/setup";
 
 async function migrateDb() {
-  const url = process.env.DATABASE_URL ?? "";
+  const url = databaseUrl() ?? "";
   const db = await getDb();
   if (/neon\.tech/.test(url)) {
     const { migrate } = await import("drizzle-orm/neon-http/migrator");

@@ -11,9 +11,22 @@ export type DB = NeonHttpDatabase<typeof schema>;
  */
 const globalForDb = globalThis as unknown as { __db?: Promise<DB> };
 
+/** Vercel's Neon integration may use a prefix or the POSTGRES_URL name; accept any of them. */
+export function databaseUrl(): string | undefined {
+  const env = process.env;
+  if (env.DATABASE_URL) return env.DATABASE_URL;
+  if (env.POSTGRES_URL) return env.POSTGRES_URL;
+  const key = Object.keys(env).find((k) => /_(DATABASE|POSTGRES)_URL$/.test(k) && env[k]);
+  return key ? env[key] : undefined;
+}
+
 async function connect(): Promise<DB> {
-  const url = process.env.DATABASE_URL;
-  if (!url) throw new Error("DATABASE_URL is not set");
+  const url = databaseUrl();
+  if (!url) {
+    throw new Error(
+      "The database isn't connected yet. In Vercel, connect the Neon database to this project, then redeploy.",
+    );
+  }
   if (url === "pglite:memory") {
     const { PGlite } = await import("@electric-sql/pglite");
     const { drizzle } = await import("drizzle-orm/pglite");
