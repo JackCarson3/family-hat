@@ -1,5 +1,5 @@
 {
-  "id": "a6fa6bec-6bb8-42f1-bfd1-3482dc649b7e",
+  "id": "b81db232-2717-4ca1-8143-f95765b55bdb",
   "prevId": "00000000-0000-0000-0000-000000000000",
   "version": "7",
   "dialect": "postgresql",
@@ -211,6 +211,12 @@
           "primaryKey": false,
           "notNull": true
         },
+        "public_id": {
+          "name": "public_id",
+          "type": "text",
+          "primaryKey": false,
+          "notNull": true
+        },
         "name": {
           "name": "name",
           "type": "text",
@@ -298,6 +304,13 @@
           "nullsNotDistinct": false,
           "columns": [
             "slug"
+          ]
+        },
+        "exchanges_public_id_unique": {
+          "name": "exchanges_public_id_unique",
+          "nullsNotDistinct": false,
+          "columns": [
+            "public_id"
           ]
         }
       },

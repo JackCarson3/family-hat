@@ -43,3 +43,5 @@ next-env.d.ts
 # private drawing links
 links.local.txt
 .env*.local
+links.demo.local.txt
+.pglite/

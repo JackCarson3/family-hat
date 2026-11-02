@@ -11,8 +11,16 @@ A private Christmas name drawing for the Carson family, drawn together over Face
 
 ## Development
 
+- `npm run db:local` starts a local Postgres (PGlite) on port 5433. Put
+  `DATABASE_URL=postgres://postgres:postgres@127.0.0.1:5433/postgres` in `.env.local`,
+  then `npm run db:migrate` and `npm run seed -- --demo`.
 - `npm run dev` runs the app locally.
-- `npm test` runs the generator and secrecy tests.
+- `npm test` runs the generator, secrecy and full-flow tests (no database needed).
+
+## Practice hat
+
+`npm run seed -- --base <url> --demo` makes a six-person practice hat with its own
+admin link, written to `links.demo.local.txt`.
 
 ## How secrecy works
 

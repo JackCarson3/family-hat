@@ -1,5 +1,5 @@
 import { and, eq, ne } from "drizzle-orm";
-import { db, schema } from "@/db";
+import { getDb, schema } from "@/db";
 import { generateAssignment, verifyAssignment, type Exclusion } from "./assign";
 import { assignmentContext, decrypt, encrypt, hatCode } from "./secrets";
 
@@ -11,7 +11,7 @@ const { exchanges, participants, exclusions, assignments } = schema;
  * Nothing about the pairings is returned to the caller.
  */
 export async function sealHat(exchangeId: string): Promise<{ ok: true; hatCode: string } | { ok: false; reason: string }> {
-  const d = db();
+  const d = await getDb();
   const [exchange] = await d.select().from(exchanges).where(eq(exchanges.id, exchangeId));
   if (!exchange) return { ok: false, reason: "That hat doesn't exist." };
 
@@ -67,7 +67,7 @@ export async function verifyStored(
   generation: number,
   expectedHatCode?: string | null,
 ): Promise<{ ok: true } | { ok: false; reason: string }> {
-  const d = db();
+  const d = await getDb();
   const people = await d.select({ id: participants.id }).from(participants).where(eq(participants.exchangeId, exchangeId));
   const rules = await d.select().from(exclusions).where(eq(exclusions.exchangeId, exchangeId));
   const rows = await d

@@ -29,7 +29,8 @@ export const stage = pgEnum("stage", [
 
 export const exchanges = pgTable("exchanges", {
   id: uuid("id").primaryKey().defaultRandom(),
-  slug: text("slug").notNull().unique(),
+  slug: text("slug").notNull().unique(), // config key, e.g. "grown-ups"
+  publicId: text("public_id").notNull().unique(), // random, used in the family-view URL
   name: text("name").notNull(),
   familyName: text("family_name").notNull(),
   stage: stage("stage").notNull().default("setup"),

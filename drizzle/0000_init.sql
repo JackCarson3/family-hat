@@ -23,6 +23,7 @@ CREATE TABLE "devices" (
 CREATE TABLE "exchanges" (
 	"id" uuid PRIMARY KEY DEFAULT gen_random_uuid() NOT NULL,
 	"slug" text NOT NULL,
+	"public_id" text NOT NULL,
 	"name" text NOT NULL,
 	"family_name" text NOT NULL,
 	"stage" "stage" DEFAULT 'setup' NOT NULL,
@@ -35,7 +36,8 @@ CREATE TABLE "exchanges" (
 	"empty_deadline" timestamp with time zone,
 	"opened_at" timestamp with time zone,
 	"created_at" timestamp with time zone DEFAULT now() NOT NULL,
-	CONSTRAINT "exchanges_slug_unique" UNIQUE("slug")
+	CONSTRAINT "exchanges_slug_unique" UNIQUE("slug"),
+	CONSTRAINT "exchanges_public_id_unique" UNIQUE("public_id")
 );
 --> statement-breakpoint
 CREATE TABLE "exclusions" (

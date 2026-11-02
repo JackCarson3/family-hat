@@ -15,6 +15,22 @@ export type HatConfig = {
 
 export const FAMILY_NAME = "Carson Family";
 
+/** A practice hat for trying the app before the real drawing. */
+export const demoHats: HatConfig[] = [
+  {
+    slug: "practice",
+    name: "Practice Hat",
+    households: [
+      { name: "Elves", members: [{ id: "jingle", name: "Jingle" }, { id: "tinsel", name: "Tinsel" }] },
+      { name: "Reindeer", members: [{ id: "dasher", name: "Dasher" }, { id: "comet", name: "Comet" }] },
+      { name: "Snowmen", members: [{ id: "frosty", name: "Frosty" }, { id: "flurry", name: "Flurry" }] },
+    ],
+    budget: "$25",
+    giftDate: "2026-12-25",
+    message: "This is a practice hat. Try everything; nothing here counts.",
+  },
+];
+
 export const hats: HatConfig[] = [
   {
     slug: "grown-ups",

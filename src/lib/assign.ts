@@ -171,7 +171,6 @@ function checkFeasible(
   people: Person[],
   allowed: Allowed,
 ): { ok: true } | { ok: false; reason: string } {
-  const names = new Map(people.map((p) => [p.id, p.name]));
 
   // Someone with nobody left to draw is the clearest message.
   for (const p of people) {
